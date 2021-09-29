@@ -4,31 +4,31 @@ const port = 5000;
 
 app.use(express.json());
 
-const users = { 
+const users = {
     users_list :
     [
-       { 
+       {
           id : 'xyz789',
           name : 'Charlie',
           job: 'Janitor',
        },
        {
-          id : 'abc123', 
+          id : 'abc123',
           name: 'Mac',
           job: 'Bouncer',
        },
        {
-          id : 'ppp222', 
+          id : 'ppp222',
           name: 'Mac',
           job: 'Professor',
-       }, 
+       },
        {
-          id: 'yat999', 
+          id: 'yat999',
           name: 'Dee',
           job: 'Aspring actress',
        },
        {
-          id: 'zap555', 
+          id: 'zap555',
           name: 'Dennis',
           job: 'Bartender',
        }
@@ -63,16 +63,16 @@ app.get('/users', (req, res) => {
     }
 });
 
-const findUserByName = (name) => { 
-    return users['users_list'].filter( (user) => user['name'] === name); 
+const findUserByName = (name) => {
+    return users['users_list'].filter( (user) => user['name'] === name);
 }
 
-const findUserByJob = (job) => { 
-    return users['users_list'].filter( (user) => user['job'] === job); 
+const findUserByJob = (job) => {
+    return users['users_list'].filter( (user) => user['job'] === job);
 }
 
-const findUserByNameAndJob = (name, job) => { 
-    return users['users_list'].filter( (user) => user['name'] === name && user['job'] === job); 
+const findUserByNameAndJob = (name, job) => {
+    return users['users_list'].filter( (user) => user['name'] === name && user['job'] === job);
 }
 
 app.get('/users/:id', (req, res) => {
@@ -108,7 +108,7 @@ app.delete('/users/:id', (req, res) => {
         res.status(404).send('User not found.');
     else {
         removeUser(user);
-        res.status(200).end();
+        res.status(204).end();
     }
 });
 
@@ -119,4 +119,4 @@ function removeUser(user){
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
-});  
+});
