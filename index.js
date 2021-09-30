@@ -99,6 +99,15 @@ app.post('/users', (req, res) => {
 });
 
 function addUser(user){
+    var randomChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+    var result = '';
+    do {
+        result = '';
+        for ( var i = 0; i < 6; i++ ) {
+            result += randomChars.charAt(Math.floor(Math.random() * randomChars.length));
+        }
+    } while (users['users_list'].filter( (user) => user['id'] === result).size > 0);
+    user.id = result;
     users['users_list'].push(user);
 }
 
